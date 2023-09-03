@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum PeriodEvent: String, CaseIterable {
+    case day
+    case week
+    case months
+    case thirtyDays
+}

@@ -9,10 +9,24 @@ import SwiftUI
 
 struct EventView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+                VStack {
+                    Text("Наполнитель")
+                    Text("1 сентября 2023")
+                    Text("замена")
+                    Text("15 сентября")
+                    Text("осталось 12 дней")
+                }
+                VStack {
+                    Text("Оплата квартиры")
+                    Text("400 евро")
+                    Text("1 октября")
+                }
+        }
     }
 }
 
 #Preview {
     EventView()
 }
+//сделать карту события
