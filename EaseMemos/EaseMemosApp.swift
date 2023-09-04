@@ -15,3 +15,6 @@ struct EaseMemosApp: App {
         }
     }
 }
+
+
+//сделать функцию конвертации даты и datepicker

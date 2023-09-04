@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EventView: View {
     let event: CardItem
+    
+    
     var body: some View {
         VStack {
             Text(event.title)
@@ -21,6 +23,6 @@ struct EventView: View {
     }
 }
 
-#Preview("fixedLayout", traits: .fixedLayout(width: 300, height: 300)) {
+#Preview("fixedLayout", traits: .fixedLayout(width: 300, height: 200)) {
     EventView(event: CardItem.sampleData[0])
 }
