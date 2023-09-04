@@ -21,6 +21,6 @@ struct EventView: View {
     }
 }
 
-#Preview {
+#Preview("fixedLayout", traits: .fixedLayout(width: 300, height: 300)) {
     EventView(event: CardItem.sampleData[0])
 }
