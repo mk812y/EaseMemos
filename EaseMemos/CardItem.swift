@@ -11,16 +11,18 @@ struct CardItem: Identifiable {
     let id: UUID
     var title: String
     var description: String
-    var eventData: Date
-    var endEventData: Date
+    var eventDate: Date
+    var endEventDate: Date
+    var lastEventDate: Date
     var periodEvent: PeriodEvent
     
-    init(id: UUID = UUID(), title: String, description: String, eventData: Date, endEventData: Date, periodEvent: PeriodEvent) {
+    init(id: UUID = UUID(), title: String, description: String, eventDate: Date, endEventDate: Date, lastEventDate: Date, periodEvent: PeriodEvent) {
         self.id = id
         self.title = title
         self.description = description
-        self.eventData = eventData
-        self.endEventData = endEventData
+        self.eventDate = eventDate
+        self.endEventDate = endEventDate
+        self.lastEventDate = lastEventDate
         self.periodEvent = periodEvent
     }
 }
@@ -30,8 +32,27 @@ extension CardItem {
     [
         CardItem(title: "Наполнитель",
                  description: "когда насыпали наполнитель и сколько дней осталось до замены протянуть",
-                 eventData: Date(),
-                 endEventData: Date(),
+                 eventDate: Date(),
+                 endEventDate: Date(),
+                 lastEventDate: Date(),
+                 periodEvent: .halfAMonth),
+        CardItem(title: "Оплата квартиры",
+                 description: "каждое первое число",
+                 eventDate: Date(),
+                 endEventDate: Date(),
+                 lastEventDate: Date(),
+                 periodEvent: .oneMonth),
+        CardItem(title: "Оплата мегафон",
+                 description: "каждые 30 дней пидорасы",
+                 eventDate: Date(),
+                 endEventDate: Date(),
+                 lastEventDate: Date(),
+                 periodEvent: .thirtyDays),
+        CardItem(title: "Помыть пол в ванной",
+                 description: "",
+                 eventDate: Date(),
+                 endEventDate: Date(),
+                 lastEventDate: Date(),
                  periodEvent: .week)
     ]
 }

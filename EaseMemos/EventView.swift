@@ -8,25 +8,19 @@
 import SwiftUI
 
 struct EventView: View {
+    let event: CardItem
     var body: some View {
         VStack {
-                VStack {
-                    Text("Наполнитель")
-                    Text("1 сентября 2023")
-                    Text("замена")
-                    Text("15 сентября")
-                    Text("осталось 12 дней")
-                }
-                VStack {
-                    Text("Оплата квартиры")
-                    Text("400 евро")
-                    Text("1 октября")
-                }
+            Text(event.title)
+            Text(event.description)
+            Text("\(event.eventDate)")
+            Text("\(event.endEventDate)")
+            Text("\(event.lastEventDate)")
+            Text("\(event.periodEvent.days)")
         }
     }
 }
 
 #Preview {
-    EventView()
+    EventView(event: CardItem.sampleData[0])
 }
-//сделать карту события
