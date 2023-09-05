@@ -26,3 +26,4 @@ struct EventView: View {
 #Preview("fixedLayout", traits: .fixedLayout(width: 300, height: 200)) {
     EventView(event: CardItem.sampleData[0])
 }
+//берем паузу до 110923
