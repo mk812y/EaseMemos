@@ -27,3 +27,4 @@ struct EventView: View {
     EventView(event: CardItem.sampleData[0])
 }
 //берем паузу до 110923
+//вернулись 041023
