@@ -5,6 +5,7 @@
 //  Created by Михаил Куприянов on 15.8.23..
 //
 
+import SwiftData
 import SwiftUI
 
 @main
@@ -13,8 +14,6 @@ struct EaseMemosApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Tip.self)
     }
 }
-
-
-//сделать функцию конвертации даты и datepicker

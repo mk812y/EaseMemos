@@ -6,19 +6,25 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Query var tips: [Tip]
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            List {
+                ForEach(tips) { tip in
+                    Text(tip.name)
+                }
+            }
+            Text("oops")
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
 }
+
+//https://www.hackingwithswift.com/quick-start/swiftdata/how-to-use-swiftdata-in-swiftui-previews
