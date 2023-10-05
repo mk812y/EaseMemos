@@ -10,28 +10,53 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
+    @State private var path = [Tip]()
     @Query var tips: [Tip]
     
     var body: some View {
-        NavigationStack {
-            List(tips) { tip in
-                Text(tip.name)
+        NavigationStack(path: $path) {
+            List {
+                ForEach(tips) { tip in
+                    NavigationLink(value: tip) {
+                        VStack {
+                            Text(tip.name)
+                        }
+                    }
+                }
+                .onDelete(perform: deleteTips)
             }
             .navigationTitle("Tips")
+            .navigationDestination(for: Tip.self, destination: TipView.init)
             .toolbar {
-                Button("Samples", action: samples)
+                Button("Add tip", systemImage: "plus", action: addTip)
+//                Button("Samples", action: samples)
             }
+            
         }
     }
     
-    func samples() {
-        let pipa = Tip(name: "Наполнитель для котов")
-        let pupa = Tip(name: "Аренда")
-        let popa = Tip(name: "Мегафон")
-        
-        modelContext.insert(pipa)
-        modelContext.insert(pupa)
-        modelContext.insert(popa)
+//    func samples() {
+//        let pipa = Tip(name: "Наполнитель для котов")
+//        let pupa = Tip(name: "Аренда")
+//        let popa = Tip(name: "Мегафон")
+//        
+//        modelContext.insert(pipa)
+//        modelContext.insert(pupa)
+//        modelContext.insert(popa)
+//    }
+    
+    func addTip() {
+        let tip = Tip()
+        modelContext.insert(tip)
+        path = [tip]
+    }
+    
+    func deleteTips(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let tip = tips[index]
+            modelContext.delete(tip)
+//            print(index)
+        }
     }
 }
 
@@ -45,5 +70,3 @@ struct ContentView: View {
     return ContentView()
         .modelContainer(container)
 }
-
-//https://www.hackingwithswift.com/quick-start/swiftdata/how-to-use-swiftdata-in-swiftui-previews
