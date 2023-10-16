@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct TipView: View {
+struct TipEditView: View {
     @Bindable var tip: Tip
     
     var body: some View {
@@ -34,6 +34,6 @@ struct TipView: View {
     let tip = Tip(name: "Example name 1", 
                   details: "Example details go here and will automatically expand vertically as they are edited.",
                   startDate: .now)
-    return TipView(tip: tip)
+    return TipEditView(tip: tip)
         .modelContainer(container)
 }
