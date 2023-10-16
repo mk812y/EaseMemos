@@ -30,7 +30,7 @@ struct ContentView: View {
                 .onDelete(perform: deleteTips)
             }
             .navigationTitle("Tips")
-            .navigationDestination(for: Tip.self, destination: TipView.init)
+            .navigationDestination(for: Tip.self, destination: TipEditView.init)
             .toolbar {
                 Button("Add tip", systemImage: "plus", action: addTip)
 //                Button("Samples", action: samples)
@@ -49,17 +49,26 @@ struct ContentView: View {
 //    }
     
     func addTip() {
+        print("tuc 1")
         let tip = Tip()
-        modelContext.insert(tip)
-        path = [tip]
+//        if !tip.name.isEmpty && !tip.details.isEmpty {
+        print("tuc 2")
+            modelContext.insert(tip)
+        print("tuc 3")
+            path = [tip]
+        print("tuc 4")
+//        } else {
+//            print("tuc tuc")
+//        }
+
     }
     
     func deleteTips(_ indexSet: IndexSet) {
         for index in indexSet {
             let tip = tips[index]
             modelContext.delete(tip)
-//            print(index)
         }
+
     }
 }
 
