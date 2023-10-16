@@ -18,8 +18,12 @@ struct ContentView: View {
             List {
                 ForEach(tips) { tip in
                     NavigationLink(value: tip) {
-                        VStack {
+                        VStack (alignment: .leading) {
                             Text(tip.name)
+                            Text(tip.startDate.formatted(date: .complete, time: .omitted))
+                            if !tip.details.isEmpty {
+                                Text(tip.details)
+                            }
                         }
                     }
                 }
@@ -31,7 +35,6 @@ struct ContentView: View {
                 Button("Add tip", systemImage: "plus", action: addTip)
 //                Button("Samples", action: samples)
             }
-            
         }
     }
     
@@ -64,7 +67,7 @@ struct ContentView: View {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Tip.self, configurations: config)
     for i in 1...3 {
-        let tip = Tip(name: "Example Tip \(i)")
+        let tip = Tip(name: "Example Tip \(i)", details: "Pipa \(i)", startDate: Date.now)
         container.mainContext.insert(tip)
     }
     return ContentView()

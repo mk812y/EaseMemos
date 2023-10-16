@@ -15,7 +15,7 @@ class Tip {
     var startDate: Date
     var period: Int
     
-    init(name: String = "Example Name Tip", details: String = "Example Details Tip", startDate: Date = .now, period: Int = 7) {
+    init(name: String = "", details: String = "", startDate: Date = .now, period: Int = 7) {
         self.name = name
         self.details = details
         self.startDate = startDate
