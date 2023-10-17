@@ -3,7 +3,7 @@
 //  EaseMemos
 //
 //  Created by Михаил Куприянов on 4.10.23..
-//
+//наполнитель 06.10.23
 
 import Foundation
 import SwiftData
@@ -11,13 +11,13 @@ import SwiftData
 @Model
 class Tip {
     var name: String
-    var details: String
+    var detail: String
     var startDate: Date
     var period: Int
     
-    init(name: String = "", details: String = "", startDate: Date = .now, period: Int = 7) {
+    init(name: String = "", detail: String = "", startDate: Date = .now, period: Int = 7) {
         self.name = name
-        self.details = details
+        self.detail = detail
         self.startDate = startDate
         self.period = period
     }

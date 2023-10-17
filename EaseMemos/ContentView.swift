@@ -18,13 +18,7 @@ struct ContentView: View {
             List {
                 ForEach(tips) { tip in
                     NavigationLink(value: tip) {
-                        VStack (alignment: .leading) {
-                            Text(tip.name)
-                            Text(tip.startDate.formatted(date: .complete, time: .omitted))
-                            if !tip.details.isEmpty {
-                                Text(tip.details)
-                            }
-                        }
+                        TipView(tip: tip)
                     }
                 }
                 .onDelete(perform: deleteTips)
@@ -33,34 +27,15 @@ struct ContentView: View {
             .navigationDestination(for: Tip.self, destination: TipEditView.init)
             .toolbar {
                 Button("Add tip", systemImage: "plus", action: addTip)
-//                Button("Samples", action: samples)
+
             }
         }
     }
-    
-//    func samples() {
-//        let pipa = Tip(name: "Наполнитель для котов")
-//        let pupa = Tip(name: "Аренда")
-//        let popa = Tip(name: "Мегафон")
-//        
-//        modelContext.insert(pipa)
-//        modelContext.insert(pupa)
-//        modelContext.insert(popa)
-//    }
-    
-    func addTip() {
-        print("tuc 1")
-        let tip = Tip()
-//        if !tip.name.isEmpty && !tip.details.isEmpty {
-        print("tuc 2")
-            modelContext.insert(tip)
-        print("tuc 3")
-            path = [tip]
-        print("tuc 4")
-//        } else {
-//            print("tuc tuc")
-//        }
 
+    func addTip() {
+        let tip = Tip()
+        modelContext.insert(tip)
+        path = [tip]
     }
     
     func deleteTips(_ indexSet: IndexSet) {
@@ -68,7 +43,7 @@ struct ContentView: View {
             let tip = tips[index]
             modelContext.delete(tip)
         }
-
+        
     }
 }
 
@@ -76,7 +51,7 @@ struct ContentView: View {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Tip.self, configurations: config)
     for i in 1...3 {
-        let tip = Tip(name: "Example Tip \(i)", details: "Pipa \(i)", startDate: Date.now)
+        let tip = Tip(name: "Example Tip \(i)", detail: "Pipa \(i)", startDate: Date.now)
         container.mainContext.insert(tip)
     }
     return ContentView()

@@ -14,7 +14,7 @@ struct TipEditView: View {
     var body: some View {
         Form {
             TextField("Name", text: $tip.name)
-            TextField("Detail", text: $tip.details)
+            TextField("Detail", text: $tip.detail)
             DatePicker("Start date", selection: $tip.startDate)
             Section("Period") {
                 Picker("Period", selection: $tip.period) {
@@ -32,7 +32,7 @@ struct TipEditView: View {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Tip.self, configurations: config)
     let tip = Tip(name: "Example name 1", 
-                  details: "Example details go here and will automatically expand vertically as they are edited.",
+                  detail: "Example detail go here and will automatically expand vertically as they are edited.",
                   startDate: .now)
     return TipEditView(tip: tip)
         .modelContainer(container)
