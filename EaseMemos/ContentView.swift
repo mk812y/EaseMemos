@@ -57,3 +57,22 @@ struct ContentView: View {
     return ContentView()
         .modelContainer(container)
 }
+
+/// Задание
+/*
+setFinishDate продумать byAdding: .month, value: period
+и увязать с
+Section("Period") {
+    Picker("Period", selection: $tip.period) {
+        Text("day").tag(1)
+        Text("week").tag(7)
+        Text("30 day").tag(30)
+    }
+    .pickerStyle(.segmented)
+}
+*/
+
+/// Заметки
+/*
+наполнитель 06 октября
+*/
