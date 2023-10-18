@@ -10,6 +10,7 @@ import SwiftData
 
 struct TipEditView: View {
     @Bindable var tip: Tip
+//    @State private var selectedOption: Period = .week
     
     var body: some View {
         Form {
@@ -20,7 +21,9 @@ struct TipEditView: View {
                 Picker("Period", selection: $tip.period) {
                     Text("day").tag(1)
                     Text("week").tag(7)
-                    Text("30 day").tag(30)
+                    Text("fortnight").tag(14)
+                    Text("30days").tag(30)
+                    Text("month").tag(0)
                 }
                 .pickerStyle(.segmented)
             }
@@ -37,3 +40,12 @@ struct TipEditView: View {
     return TipEditView(tip: tip)
         .modelContainer(container)
 }
+
+
+//enum Period {
+//    case day
+//    case week
+//    case fortnight
+//    case thirtDays
+//    case month
+//}
