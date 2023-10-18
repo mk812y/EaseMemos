@@ -60,16 +60,8 @@ struct ContentView: View {
 
 /// Задание
 /*
-setFinishDate продумать byAdding: .month, value: period
-и увязать с
-Section("Period") {
-    Picker("Period", selection: $tip.period) {
-        Text("day").tag(1)
-        Text("week").tag(7)
-        Text("30 day").tag(30)
-    }
-    .pickerStyle(.segmented)
-}
+1 до пройти курс
+2 подумать над enum Period и class Tip - чтобы выводить в словах период на TipView
 */
 
 /// Заметки
