@@ -27,7 +27,6 @@ struct ContentView: View {
             .navigationDestination(for: Tip.self, destination: TipEditView.init)
             .toolbar {
                 Button("Add tip", systemImage: "plus", action: addTip)
-
             }
         }
     }
@@ -60,6 +59,7 @@ struct ContentView: View {
 
 /// Задание
 /*
+0 без изменений, надо пройти пару tutorials
 1 до пройти курс
 2 подумать над enum Period и class Tip - чтобы выводить в словах период на TipView
 */
