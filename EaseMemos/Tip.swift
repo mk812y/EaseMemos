@@ -22,19 +22,14 @@ class Tip {
     }
 }
 
-enum Period: Int {
-    case day = 1
-    case week = 2
-    case fortnight = 14
-    case thirtDays = 30
-    case month = 31
+enum BasicPeriod {
+    case day
+    case week
+    case month
+    case year
 }
-
-//Text("day").tag(1)
-//Text("week").tag(7)
-//Text("fortnight").tag(14)
-//Text("30days").tag(30)
-//Text("month").tag(0)
 
 //byAdding: .day, value: period
 //byAdding: .month, value: 1
+
+//@State private var selectedOption: PeriodZero = .week

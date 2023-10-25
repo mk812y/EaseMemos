@@ -22,7 +22,7 @@ struct TipView: View {
                 Text(tip.startDate.formatted(date: .abbreviated, time: .omitted))
 //                Text(tip.startDate.formatted(.dateTime.weekday()))
                 Text("->")
-                Text(setFinishDate(tip.period, tip.startDate))
+//                Text(setFinishDate(tip.period, tip.startDate))
             }
 //            DatePicker("Finish Date", selection: $testPicker, displayedComponents: .)
             if !tip.detail.isEmpty {
@@ -50,7 +50,7 @@ struct TipView: View {
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Tip.self, configurations: config)
-    let tip = Tip(name: "Example Tip name", detail: "detail detail detail detail detail detail detail detail detail detail detail detail ", startDate: Date.now, period: 14)
+    let tip = Tip(name: "Example Tip name", detail: "detail detail detail detail detail detail detail detail detail detail detail detail ", startDate: Date.now, period: .week)
         container.mainContext.insert(tip)
     return TipView(tip: tip)
         .modelContainer(container)

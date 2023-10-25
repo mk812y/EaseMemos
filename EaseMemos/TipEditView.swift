@@ -10,23 +10,20 @@ import SwiftData
 
 struct TipEditView: View {
     @Bindable var tip: Tip
-    @State var weeek = "week"
-    @State private var selectedOption: PeriodZero = .week
     
     var body: some View {
         Form {
             TextField("Name", text: $tip.name)
             TextField("Detail", text: $tip.detail)
             DatePicker("Start date", selection: $tip.startDate)
-            Section("Period") {
+//            Section("Period") {
 //                Picker("Period", selection: $tip.period) {
-                Picker("Period", selection: $selectedOption) {
-                    Text("day").tag(PeriodZero.day)
-                    Text("week").tag(PeriodZero.week)
-                    Text("month").tag(PeriodZero.month)
-                }
-                .pickerStyle(.segmented)
-            }
+//                    Text("day").tag(.day)
+////                    Text("week").tag(.week)
+////                    Text("month").tag(.month)
+//                }
+//                .pickerStyle(.segmented)
+//            }
         }
     }
 }
@@ -39,11 +36,4 @@ struct TipEditView: View {
                   startDate: .now)
     return TipEditView(tip: tip)
         .modelContainer(container)
-}
-
-
-enum PeriodZero {
-    case day
-    case week
-    case month
 }
