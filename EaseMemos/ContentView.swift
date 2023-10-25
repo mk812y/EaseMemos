@@ -18,13 +18,13 @@ struct ContentView: View {
             List {
                 ForEach(tips) { tip in
                     NavigationLink(value: tip) {
-//                        TipView(tip: tip)
+                        TipView(tip: tip)
                     }
                 }
                 .onDelete(perform: deleteTips)
             }
             .navigationTitle("Tips")
-//            .navigationDestination(for: Tip.self, destination: TipEditView.init)
+            .navigationDestination(for: Tip.self, destination: TipEditView.init)
             .toolbar {
                 Button("Add tip", systemImage: "plus", action: addTip)
             }
@@ -59,7 +59,7 @@ struct ContentView: View {
 
 /// Задание
 /*
-2 подумать над enum Period и class Tip - чтобы выводить в словах период на TipView
+разобраться с modifiedDate = Calendar.current.date(byAdding: .day
 */
 
 /// Заметки
