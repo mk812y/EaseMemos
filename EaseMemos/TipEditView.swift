@@ -16,14 +16,15 @@ struct TipEditView: View {
             TextField("Name", text: $tip.name)
             TextField("Detail", text: $tip.detail)
             DatePicker("Start date", selection: $tip.startDate)
-//            Section("Period") {
-//                Picker("Period", selection: $tip.period) {
-//                    Text("day").tag(.day)
-////                    Text("week").tag(.week)
-////                    Text("month").tag(.month)
-//                }
-//                .pickerStyle(.segmented)
-//            }
+            Section("Period") {
+                Picker("Period", selection: $tip.period) {
+                    Text("day").tag(Period.day)
+                    Text("week").tag(Period.week)
+                    Text("month").tag(Period.month)
+                    Text("year").tag(Period.year)
+                }
+                .pickerStyle(.segmented)
+            }
         }
     }
 }

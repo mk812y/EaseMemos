@@ -12,9 +12,9 @@ class Tip {
     var name: String
     var detail: String
     var startDate: Date
-    var period: Int
+    var period: Period
     
-    init(name: String = "", detail: String = "", startDate: Date = .now, period: Int = 7) {
+    init(name: String = "", detail: String = "", startDate: Date = .now, period: Period = .week) {
         self.name = name
         self.detail = detail
         self.startDate = startDate
@@ -22,14 +22,9 @@ class Tip {
     }
 }
 
-enum BasicPeriod {
+enum Period: Codable{
     case day
     case week
     case month
     case year
 }
-
-//byAdding: .day, value: period
-//byAdding: .month, value: 1
-
-//@State private var selectedOption: PeriodZero = .week
