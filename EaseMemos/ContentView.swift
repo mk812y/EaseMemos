@@ -33,7 +33,7 @@ struct ContentView: View {
 
     func addTip() {
         let tip = Tip()
-        modelContext.insert(tip)
+//        modelContext.insert(tip)
         path = [tip]
     }
     
@@ -59,7 +59,9 @@ struct ContentView: View {
 
 /// Задание
 /*
- 
+ 1 разобраться с автосохранением Tip - //        modelContext.insert(tip)
+ ----
+ подумать на месте ли эта функция func setFinishDate(_ period: Period, _ startDate: Date) -> String {
 */
 
 /// Заметки

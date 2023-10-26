@@ -10,24 +10,20 @@ import SwiftData
 
 struct TipView: View {
     var tip: Tip
-//    let modifiedDate = Calendar.current.date(byAdding: .month, value: 4, to: .now) ?? .now
-    
+
     var body: some View {
         VStack (alignment: .leading) {
             Text(tip.name)
                 .font(.title2)
             HStack {
-                Text(tip.startDate.formatted(date: .abbreviated, time: .shortened))
+                Text(tip.startDate.formatted(date: .abbreviated, time: .omitted))
                 Text("->")
                 Text(setFinishDate(tip.period, tip.startDate))
-                
             }
             if !tip.detail.isEmpty {
                 Text(tip.detail)
                     .font(.caption)
             }
-//            Text("\(tip.period.rawValue)")
-//            Text("\(tip.period.hashValue)")
         }
     }
     
@@ -45,14 +41,16 @@ struct TipView: View {
             periodAsCalendarComponent = .year
         }
         modifiedDate = Calendar.current.date(byAdding: periodAsCalendarComponent, value: 1, to: tip.startDate) ?? .now
-        return modifiedDate.formatted(date: .abbreviated, time: .shortened)
+        return modifiedDate.formatted(date: .abbreviated, time: .omitted)
     }
 }
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Tip.self, configurations: config)
-    let tip = Tip(name: "Example Tip name", detail: "detail detail detail detail detail detail detail detail detail detail detail detail ", startDate: Date.now)
+    let tip = Tip(name: "Example Tip name", 
+                  detail: "detail detail detail detail detail detail detail detail detail detail detail detail ",
+                  startDate: Date.now)
         container.mainContext.insert(tip)
     return TipView(tip: tip)
         .modelContainer(container)
