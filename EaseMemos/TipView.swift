@@ -10,47 +10,49 @@ import SwiftData
 
 struct TipView: View {
     var tip: Tip
-    let modifiedDate = Calendar.current.date(byAdding: .month, value: 4, to: .now) ?? .now
-//    @State private var testPicker = Date.now
+//    let modifiedDate = Calendar.current.date(byAdding: .month, value: 4, to: .now) ?? .now
     
     var body: some View {
         VStack (alignment: .leading) {
             Text(tip.name)
                 .font(.title2)
-//                .bold()
             HStack {
-                Text(tip.startDate.formatted(date: .abbreviated, time: .omitted))
-//                Text(tip.startDate.formatted(.dateTime.weekday()))
+                Text(tip.startDate.formatted(date: .abbreviated, time: .shortened))
                 Text("->")
-//                Text(setFinishDate(tip.period, tip.startDate))
+                Text(setFinishDate(tip.period, tip.startDate))
+                
             }
-//            DatePicker("Finish Date", selection: $testPicker, displayedComponents: .)
             if !tip.detail.isEmpty {
                 Text(tip.detail)
                     .font(.caption)
             }
+//            Text("\(tip.period.rawValue)")
+//            Text("\(tip.period.hashValue)")
         }
     }
     
-    func setFinishDate(_ period: Int, _ startDate: Date) -> String {
+    func setFinishDate(_ period: Period, _ startDate: Date) -> String {
         var modifiedDate = startDate
+        var periodAsCalendarComponent: Calendar.Component = .day
         switch period {
-        case 1...30:
-            modifiedDate = Calendar.current.date(byAdding: .day, value: period, to: tip.startDate) ?? .now
-        case 0:
-            modifiedDate = Calendar.current.date(byAdding: .month, value: 1, to: tip.startDate) ?? .now
-        default:
-            modifiedDate = startDate
+        case .day:
+            periodAsCalendarComponent = .day
+        case .weekOfMonth:
+            periodAsCalendarComponent = .weekOfMonth
+        case .month:
+            periodAsCalendarComponent = .month
+        case .year:
+            periodAsCalendarComponent = .year
         }
-        return modifiedDate.formatted(date: .abbreviated, time: .omitted)
-//        return modifiedDate//.formatted(date: .complete, time: .omitted)
+        modifiedDate = Calendar.current.date(byAdding: periodAsCalendarComponent, value: 1, to: tip.startDate) ?? .now
+        return modifiedDate.formatted(date: .abbreviated, time: .shortened)
     }
 }
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Tip.self, configurations: config)
-    let tip = Tip(name: "Example Tip name", detail: "detail detail detail detail detail detail detail detail detail detail detail detail ", startDate: Date.now, period: .week)
+    let tip = Tip(name: "Example Tip name", detail: "detail detail detail detail detail detail detail detail detail detail detail detail ", startDate: Date.now)
         container.mainContext.insert(tip)
     return TipView(tip: tip)
         .modelContainer(container)

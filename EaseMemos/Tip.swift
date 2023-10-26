@@ -14,7 +14,7 @@ class Tip {
     var startDate: Date
     var period: Period
     
-    init(name: String = "", detail: String = "", startDate: Date = .now, period: Period = .week) {
+    init(name: String = "", detail: String = "", startDate: Date = .now, period: Period = .weekOfMonth) {
         self.name = name
         self.detail = detail
         self.startDate = startDate
@@ -24,7 +24,7 @@ class Tip {
 
 enum Period: Codable{
     case day
-    case week
+    case weekOfMonth
     case month
     case year
 }

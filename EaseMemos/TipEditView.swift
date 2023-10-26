@@ -19,7 +19,7 @@ struct TipEditView: View {
             Section("Period") {
                 Picker("Period", selection: $tip.period) {
                     Text("day").tag(Period.day)
-                    Text("week").tag(Period.week)
+                    Text("week").tag(Period.weekOfMonth)
                     Text("month").tag(Period.month)
                     Text("year").tag(Period.year)
                 }

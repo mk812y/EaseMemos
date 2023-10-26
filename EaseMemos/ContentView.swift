@@ -59,7 +59,7 @@ struct ContentView: View {
 
 /// Задание
 /*
-разобраться с modifiedDate = Calendar.current.date(byAdding: .day
+ 
 */
 
 /// Заметки
