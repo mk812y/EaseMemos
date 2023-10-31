@@ -11,7 +11,8 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @State private var path = [Tip]()
-    @Query var tips: [Tip]
+    @Query private var tips: [Tip]
+    @State private var newEvent = AddEventView()
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -26,7 +27,13 @@ struct ContentView: View {
             .navigationTitle("Tips")
             .navigationDestination(for: Tip.self, destination: TipEditView.init)
             .toolbar {
-                Button("Add tip", systemImage: "plus", action: addTip)
+//                Button("Add tip", systemImage: "plus", action: addTip)
+//                TipEditView(tip: <#T##Tip#>)
+                NavigationLink {
+                    AddEventView()
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
     }
@@ -59,7 +66,8 @@ struct ContentView: View {
 
 /// Задание
 /*
- 1 разобраться с автосохранением Tip - //        modelContext.insert(tip)
+ 1 автосохранение переделать как в SwiftDataDemoApp
+ 2 добавить TipKit - а надо ли?
  ----
  подумать на месте ли эта функция func setFinishDate(_ period: Period, _ startDate: Date) -> String {
 */
