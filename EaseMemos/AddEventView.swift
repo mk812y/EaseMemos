@@ -48,7 +48,9 @@ struct AddEventView: View {
             }, label: {
                 Image(systemName: "plus.circle")
             })
+            .disabled(nameTip.count < 3)
         })
+        Spacer()
     }
 }
 
