@@ -7,26 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A51E179B2AF11018007965CF /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E179A2AF11018007965CF /* EventListView.swift */; };
-		A537D4CA2ACF395300C0F8E0 /* TipEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537D4C92ACF395300C0F8E0 /* TipEditView.swift */; };
-		A5400E3D2ADF15270011A7A4 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5400E3C2ADF15270011A7A4 /* TipView.swift */; };
-		A543A6FE2ACDE5770066560A /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A543A6FD2ACDE5770066560A /* Tip.swift */; };
+		A537D4CA2ACF395300C0F8E0 /* EventEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537D4C92ACF395300C0F8E0 /* EventEditView.swift */; };
+		A5400E3D2ADF15270011A7A4 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5400E3C2ADF15270011A7A4 /* EventView.swift */; };
+		A543A6FE2ACDE5770066560A /* ModelEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A543A6FD2ACDE5770066560A /* ModelEvent.swift */; };
 		A567D85F2AF0E40C0093FCB7 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A567D85E2AF0E40C0093FCB7 /* AddEventView.swift */; };
 		A5D626FE2A8BFBF800E7B295 /* EaseMemosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D626FD2A8BFBF800E7B295 /* EaseMemosApp.swift */; };
-		A5D627002A8BFBF800E7B295 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D626FF2A8BFBF800E7B295 /* ContentView.swift */; };
+		A5D627002A8BFBF800E7B295 /* ListEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D626FF2A8BFBF800E7B295 /* ListEventView.swift */; };
 		A5D627022A8BFBFA00E7B295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5D627012A8BFBFA00E7B295 /* Assets.xcassets */; };
 		A5D627062A8BFBFA00E7B295 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5D627052A8BFBFA00E7B295 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A51E179A2AF11018007965CF /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
-		A537D4C92ACF395300C0F8E0 /* TipEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipEditView.swift; sourceTree = "<group>"; };
-		A5400E3C2ADF15270011A7A4 /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
-		A543A6FD2ACDE5770066560A /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
+		A537D4C92ACF395300C0F8E0 /* EventEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditView.swift; sourceTree = "<group>"; };
+		A5400E3C2ADF15270011A7A4 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		A543A6FD2ACDE5770066560A /* ModelEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelEvent.swift; sourceTree = "<group>"; };
 		A567D85E2AF0E40C0093FCB7 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		A5D626FA2A8BFBF800E7B295 /* EaseMemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EaseMemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D626FD2A8BFBF800E7B295 /* EaseMemosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EaseMemosApp.swift; sourceTree = "<group>"; };
-		A5D626FF2A8BFBF800E7B295 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A5D626FF2A8BFBF800E7B295 /* ListEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventView.swift; sourceTree = "<group>"; };
 		A5D627012A8BFBFA00E7B295 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5D627032A8BFBFA00E7B295 /* EaseMemos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EaseMemos.entitlements; sourceTree = "<group>"; };
 		A5D627052A8BFBFA00E7B295 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -63,12 +61,11 @@
 			isa = PBXGroup;
 			children = (
 				A5D626FD2A8BFBF800E7B295 /* EaseMemosApp.swift */,
-				A5D626FF2A8BFBF800E7B295 /* ContentView.swift */,
-				A51E179A2AF11018007965CF /* EventListView.swift */,
-				A5400E3C2ADF15270011A7A4 /* TipView.swift */,
-				A537D4C92ACF395300C0F8E0 /* TipEditView.swift */,
-				A543A6FD2ACDE5770066560A /* Tip.swift */,
+				A5D626FF2A8BFBF800E7B295 /* ListEventView.swift */,
 				A567D85E2AF0E40C0093FCB7 /* AddEventView.swift */,
+				A5400E3C2ADF15270011A7A4 /* EventView.swift */,
+				A537D4C92ACF395300C0F8E0 /* EventEditView.swift */,
+				A543A6FD2ACDE5770066560A /* ModelEvent.swift */,
 				A5D627012A8BFBFA00E7B295 /* Assets.xcassets */,
 				A5D627032A8BFBFA00E7B295 /* EaseMemos.entitlements */,
 				A5D627042A8BFBFA00E7B295 /* Preview Content */,
@@ -155,12 +152,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A567D85F2AF0E40C0093FCB7 /* AddEventView.swift in Sources */,
-				A537D4CA2ACF395300C0F8E0 /* TipEditView.swift in Sources */,
-				A51E179B2AF11018007965CF /* EventListView.swift in Sources */,
-				A543A6FE2ACDE5770066560A /* Tip.swift in Sources */,
-				A5D627002A8BFBF800E7B295 /* ContentView.swift in Sources */,
+				A537D4CA2ACF395300C0F8E0 /* EventEditView.swift in Sources */,
+				A543A6FE2ACDE5770066560A /* ModelEvent.swift in Sources */,
+				A5D627002A8BFBF800E7B295 /* ListEventView.swift in Sources */,
 				A5D626FE2A8BFBF800E7B295 /* EaseMemosApp.swift in Sources */,
-				A5400E3D2ADF15270011A7A4 /* TipView.swift in Sources */,
+				A5400E3D2ADF15270011A7A4 /* EventView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

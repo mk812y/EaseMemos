@@ -1,5 +1,5 @@
 //
-//  TipView.swift
+//  EventView.swift
 //  EaseMemos
 //
 //  Created by Михаил Куприянов on 17.10.23..
@@ -8,8 +8,8 @@
 import SwiftUI
 import SwiftData
 
-struct TipView: View {
-    var tip: Tip
+struct EventView: View {
+    var tip: ModelEvent
 
     var body: some View {
         VStack (alignment: .leading) {
@@ -24,6 +24,7 @@ struct TipView: View {
                 Text(tip.detail)
                     .font(.caption)
             }
+            Text("\(tip.period.description)")
         }
     }
     
@@ -47,12 +48,12 @@ struct TipView: View {
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Tip.self, configurations: config)
-    let tip = Tip(name: "Example Tip name", 
+    let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
+    let tip = ModelEvent(name: "Example ModelEvent name", 
                   detail: "detail detail detail detail detail detail detail detail detail detail detail detail ",
                   startDate: Date.now)
         container.mainContext.insert(tip)
-    return TipView(tip: tip)
+    return EventView(tip: tip)
         .modelContainer(container)
 }
 

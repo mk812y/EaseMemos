@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  ListEventView.swift
 //  EaseMemos
 //
 //  Created by Михаил Куприянов on 15.8.23..
@@ -8,10 +8,10 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct ListEventView: View {
     @Environment(\.modelContext) var modelContext
-    @State private var path = [Tip]()
-    @Query private var tips: [Tip]
+    @State private var path = [ModelEvent]()
+    @Query private var tips: [ModelEvent]
     @State private var newEvent = AddEventView()
     
     var body: some View {
@@ -19,16 +19,14 @@ struct ContentView: View {
             List {
                 ForEach(tips) { tip in
                     NavigationLink(value: tip) {
-                        TipView(tip: tip)
+                        EventView(tip: tip)
                     }
                 }
                 .onDelete(perform: deleteTips)
             }
             .navigationTitle("Tips")
-            .navigationDestination(for: Tip.self, destination: TipEditView.init)
+            .navigationDestination(for: ModelEvent.self, destination: EventEditView.init)
             .toolbar {
-//                Button("Add tip", systemImage: "plus", action: addTip)
-//                TipEditView(tip: <#T##Tip#>)
                 NavigationLink {
                     AddEventView()
                 } label: {
@@ -39,7 +37,7 @@ struct ContentView: View {
     }
 
     func addTip() {
-        let tip = Tip()
+        let tip = ModelEvent()
 //        modelContext.insert(tip)
         path = [tip]
     }
@@ -55,12 +53,12 @@ struct ContentView: View {
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Tip.self, configurations: config)
+    let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
     for i in 1...3 {
-        let tip = Tip(name: "Example Tip \(i)", detail: "Pipa \(i)", startDate: Date.now)
+        let tip = ModelEvent(name: "Example ModelEvent \(i)", detail: "Pipa \(i)", startDate: Date.now)
         container.mainContext.insert(tip)
     }
-    return ContentView()
+    return ListEventView()
         .modelContainer(container)
 }
 

@@ -1,5 +1,5 @@
 //
-//  Tip.swift
+//  ModelEvent.swift
 //  EaseMemos
 //
 //  Created by Михаил Куприянов on 4.10.23..
@@ -8,13 +8,13 @@ import Foundation
 import SwiftData
 
 @Model
-class Tip {
+class ModelEvent {
     var name: String
     var detail: String
     var startDate: Date
     var period: Period
     
-    init(name: String = "", detail: String = "", startDate: Date = .now, period: Period = .day) {
+    init(name: String = "", detail: String = "", startDate: Date = .now, period: Period = .weekOfMonth) {
         self.name = name
         self.detail = detail
         self.startDate = startDate
@@ -27,4 +27,13 @@ enum Period: Codable{
     case weekOfMonth
     case month
     case year
+    
+    var description: String {
+        switch self {
+        case .day: "day"
+        case .weekOfMonth: "week"
+        case .month: "month"
+        case .year: "year"
+        }
+    }
 }

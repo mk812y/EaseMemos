@@ -12,8 +12,8 @@ import SwiftUI
 struct EaseMemosApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ListEventView()
         }
-        .modelContainer(for: Tip.self)
+        .modelContainer(for: ModelEvent.self)
     }
 }
