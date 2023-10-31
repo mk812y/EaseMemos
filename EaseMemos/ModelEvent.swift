@@ -20,6 +20,25 @@ class ModelEvent {
         self.startDate = startDate
         self.period = period
     }
+    
+    func setFinishDate(_ period: Period, _ startDate: Date) -> String {
+        var modifiedDate = startDate
+        var periodAsCalendarComponent: Calendar.Component = .nanosecond
+        switch period {
+        case .noPeriod:
+            break
+        case .day:
+            periodAsCalendarComponent = .day
+        case .weekOfMonth:
+            periodAsCalendarComponent = .weekOfMonth
+        case .month:
+            periodAsCalendarComponent = .month
+        case .year:
+            periodAsCalendarComponent = .year
+        }
+        modifiedDate = Calendar.current.date(byAdding: periodAsCalendarComponent, value: 1, to: startDate) ?? .now
+        return modifiedDate.formatted(date: .abbreviated, time: .omitted)
+    }
 }
 
 enum Period: Codable{

@@ -18,7 +18,7 @@ struct EventView: View {
             HStack {
                 Text(tip.startDate.formatted(date: .abbreviated, time: .omitted))
                 Text("->")
-                Text(setFinishDate(tip.period, tip.startDate))
+                Text(tip.setFinishDate(tip.period, tip.startDate))
             }
             if !tip.detail.isEmpty {
                 Text(tip.detail)
@@ -26,25 +26,6 @@ struct EventView: View {
             }
             Text("\(tip.period.description)")
         }
-    }
-    
-    func setFinishDate(_ period: Period, _ startDate: Date) -> String {
-        var modifiedDate = startDate
-        var periodAsCalendarComponent: Calendar.Component = .day
-        switch period {
-        case .noPeriod:
-            break
-        case .day:
-            periodAsCalendarComponent = .day
-        case .weekOfMonth:
-            periodAsCalendarComponent = .weekOfMonth
-        case .month:
-            periodAsCalendarComponent = .month
-        case .year:
-            periodAsCalendarComponent = .year
-        }
-        modifiedDate = Calendar.current.date(byAdding: periodAsCalendarComponent, value: 1, to: tip.startDate) ?? .now
-        return modifiedDate.formatted(date: .abbreviated, time: .omitted)
     }
 }
 
