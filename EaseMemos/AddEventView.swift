@@ -14,7 +14,7 @@ struct AddEventView: View {
     @State private var nameTip: String = ""
     @State private var detailTip: String = ""
     @State private var startDateTip: Date = .now
-    @State private var periodTip: Period = .weekOfMonth
+    @State private var periodTip: Period = .noPeriod
     
     var body: some View {
         VStack {

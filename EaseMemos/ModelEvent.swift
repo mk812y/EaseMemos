@@ -14,7 +14,7 @@ class ModelEvent {
     var startDate: Date
     var period: Period
     
-    init(name: String = "", detail: String = "", startDate: Date = .now, period: Period = .weekOfMonth) {
+    init(name: String = "", detail: String = "", startDate: Date = .now, period: Period = .noPeriod) {
         self.name = name
         self.detail = detail
         self.startDate = startDate
@@ -23,6 +23,7 @@ class ModelEvent {
 }
 
 enum Period: Codable{
+    case noPeriod
     case day
     case weekOfMonth
     case month
@@ -30,6 +31,7 @@ enum Period: Codable{
     
     var description: String {
         switch self {
+        case .noPeriod: "no period event"
         case .day: "day"
         case .weekOfMonth: "week"
         case .month: "month"

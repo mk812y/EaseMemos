@@ -32,6 +32,8 @@ struct EventView: View {
         var modifiedDate = startDate
         var periodAsCalendarComponent: Calendar.Component = .day
         switch period {
+        case .noPeriod:
+            break
         case .day:
             periodAsCalendarComponent = .day
         case .weekOfMonth:
