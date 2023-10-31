@@ -64,7 +64,7 @@ struct ListEventView: View {
 
 /// Задание
 /*
- 0 lazy period
+ 0 логику из AddEventView
  1 дизайн
  2 добавить под периодичностью выбор даты
  2 добавить 30 дней

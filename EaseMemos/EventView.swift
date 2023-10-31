@@ -16,9 +16,10 @@ struct EventView: View {
             Text(event.name)
                 .font(.title2)
             HStack {
-                Text(event.startDate.formatted(date: .abbreviated, time: .omitted))
+                Text(event.createdEventDate.formatted(date: .abbreviated, time: .omitted))
                 Text("->")
-                Text(event.setFinishDate(event.period, event.startDate))
+//                Text(event.setFinishDate(event.period, event.createdEventDate))
+                Text(event.eventDate.formatted(date: .abbreviated, time: .omitted))
             }
             if !event.detail.isEmpty {
                 Text(event.detail)
@@ -32,7 +33,7 @@ struct EventView: View {
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
-    let event = ModelEvent(name: "Example ModelEvent name", 
+    let event = ModelEvent(name: "Example name",
                   detail: "detail detail detail detail detail detail detail detail detail detail detail detail ",
                   startDate: Date.now)
         container.mainContext.insert(event)

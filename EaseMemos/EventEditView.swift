@@ -15,7 +15,7 @@ struct EventEditView: View {
         Form {
             TextField("Name", text: $event.name)
             TextField("Detail", text: $event.detail)
-            DatePicker("Start date", selection: $event.startDate)
+            DatePicker("Start date", selection: $event.createdEventDate)
             Section("Period") {
                 Picker("Period", selection: $event.period) {
                     Text("day").tag(Period.day)

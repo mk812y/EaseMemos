@@ -11,18 +11,20 @@ import SwiftData
 class ModelEvent {
     var name: String
     var detail: String
-    var startDate: Date
+    var createdEventDate: Date
+    var eventDate: Date
     var period: Period
     
-    init(name: String = "", detail: String = "", startDate: Date = .now, period: Period = .noPeriod) {
+    init(name: String = "", detail: String = "", startDate: Date = .now, eventDate: Date = .now, period: Period = .noPeriod) {
         self.name = name
         self.detail = detail
-        self.startDate = startDate
+        self.createdEventDate = startDate
+        self.eventDate = eventDate
         self.period = period
     }
     
-    func setFinishDate(_ period: Period, _ startDate: Date) -> String {
-        var modifiedDate = startDate
+    func setFinishDate(_ period: Period, _ createdEventDate: Date) -> String {
+        var modifiedDate = createdEventDate
         var periodAsCalendarComponent: Calendar.Component = .nanosecond
         switch period {
         case .noPeriod:
@@ -36,7 +38,7 @@ class ModelEvent {
         case .year:
             periodAsCalendarComponent = .year
         }
-        modifiedDate = Calendar.current.date(byAdding: periodAsCalendarComponent, value: 1, to: startDate) ?? .now
+        modifiedDate = Calendar.current.date(byAdding: periodAsCalendarComponent, value: 1, to: createdEventDate) ?? .now
         return modifiedDate.formatted(date: .abbreviated, time: .omitted)
     }
 }
