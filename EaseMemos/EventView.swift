@@ -9,22 +9,22 @@ import SwiftUI
 import SwiftData
 
 struct EventView: View {
-    var tip: ModelEvent
+    var event: ModelEvent
 
     var body: some View {
         VStack (alignment: .leading) {
-            Text(tip.name)
+            Text(event.name)
                 .font(.title2)
             HStack {
-                Text(tip.startDate.formatted(date: .abbreviated, time: .omitted))
+                Text(event.startDate.formatted(date: .abbreviated, time: .omitted))
                 Text("->")
-                Text(tip.setFinishDate(tip.period, tip.startDate))
+                Text(event.setFinishDate(event.period, event.startDate))
             }
-            if !tip.detail.isEmpty {
-                Text(tip.detail)
+            if !event.detail.isEmpty {
+                Text(event.detail)
                     .font(.caption)
             }
-            Text("\(tip.period.description)")
+            Text("\(event.period.description)")
         }
     }
 }
@@ -32,11 +32,11 @@ struct EventView: View {
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
-    let tip = ModelEvent(name: "Example ModelEvent name", 
+    let event = ModelEvent(name: "Example ModelEvent name", 
                   detail: "detail detail detail detail detail detail detail detail detail detail detail detail ",
                   startDate: Date.now)
-        container.mainContext.insert(tip)
-    return EventView(tip: tip)
+        container.mainContext.insert(event)
+    return EventView(event: event)
         .modelContainer(container)
 }
 

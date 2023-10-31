@@ -19,7 +19,7 @@ struct ListEventView: View {
             List {
                 ForEach(tips) { tip in
                     NavigationLink(value: tip) {
-                        EventView(tip: tip)
+                        EventView(event: tip)
                     }
                 }
                 .onDelete(perform: deleteTips)
@@ -38,7 +38,7 @@ struct ListEventView: View {
 
     func addTip() {
         let tip = ModelEvent()
-//        modelContext.insert(tip)
+//        modelContext.insert(event)
         path = [tip]
     }
     
@@ -78,7 +78,6 @@ struct ListEventView: View {
  
  
  ----
- подумать на месте ли эта функция func setFinishDate(_ period: Period, _ startDate: Date) -> String {
 */
 
 /// Заметки

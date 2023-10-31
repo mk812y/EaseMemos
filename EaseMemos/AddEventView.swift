@@ -11,44 +11,52 @@ import SwiftData
 struct AddEventView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State private var nameTip: String = ""
-    @State private var detailTip: String = ""
-    @State private var startDateTip: Date = .now
-    @State private var periodTip: Period = .noPeriod
+    @State private var nameEvent: String = ""
+    @State private var detailEvent: String = ""
+    @State private var startDateEvent: Date = .now
+    @State private var periodEvent: Period = .noPeriod
+    @State private var eventDate: Date = .now
     
     var body: some View {
         VStack {
-            TextField("Name event", text: $nameTip)
+            TextField("Name event", text: $nameEvent)
                 .textFieldStyle(.roundedBorder)
-            TextField("Detail event", text: $detailTip)
+            TextField("Detail event", text: $detailEvent)
                 .textFieldStyle(.roundedBorder)
-            DatePicker("Start day", selection: $startDateTip)
-            Section("Period") {
-                Picker("Period", selection: $periodTip) {
+            
+            Section("repeat the event in a ...?") {
+                Picker("set event period", selection: $periodEvent) {
                     Text("day").tag(Period.day)
                     Text("week").tag(Period.weekOfMonth)
                     Text("month").tag(Period.month)
                     Text("year").tag(Period.year)
+                    Text("no").tag(Period.noPeriod)
                 }
                 .pickerStyle(.segmented)
             }
+            if periodEvent != .noPeriod {
+                Text("d")
+            }
+            DatePicker("set event data", selection: $eventDate, displayedComponents: .date)
+//            DatePicker("created data", selection: $startDateEvent, displayedComponents: .date)
+            
         }
         .padding()
         .navigationTitle("Add Event")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(content: {
             Button(action: {
-                let event = ModelEvent(name: nameTip,
-                                       detail: detailTip,
-                                       startDate: startDateTip,
-                                       period: periodTip
+                let event = ModelEvent(name: nameEvent,
+                                       detail: detailEvent,
+                                       startDate: startDateEvent,
+                                       period: periodEvent
                 )
                 modelContext.insert(event)
                 presentationMode.wrappedValue.dismiss()
             }, label: {
                 Image(systemName: "plus.circle")
             })
-            .disabled(nameTip.count < 3)
+            .disabled(nameEvent.count < 3)
         })
         Spacer()
     }

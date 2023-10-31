@@ -9,15 +9,15 @@ import SwiftUI
 import SwiftData
 
 struct EventEditView: View {
-    @Bindable var tip: ModelEvent
+    @Bindable var event: ModelEvent
     
     var body: some View {
         Form {
-            TextField("Name", text: $tip.name)
-            TextField("Detail", text: $tip.detail)
-            DatePicker("Start date", selection: $tip.startDate)
+            TextField("Name", text: $event.name)
+            TextField("Detail", text: $event.detail)
+            DatePicker("Start date", selection: $event.startDate)
             Section("Period") {
-                Picker("Period", selection: $tip.period) {
+                Picker("Period", selection: $event.period) {
                     Text("day").tag(Period.day)
                     Text("week").tag(Period.weekOfMonth)
                     Text("month").tag(Period.month)
@@ -32,9 +32,9 @@ struct EventEditView: View {
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
-    let tip = ModelEvent(name: "Example name 1", 
+    let event = ModelEvent(name: "Example name 1", 
                   detail: "Example detail go here and will automatically expand vertically as they are edited.",
                   startDate: .now)
-    return EventEditView(tip: tip)
+    return EventEditView(event: event)
         .modelContainer(container)
 }
