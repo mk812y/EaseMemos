@@ -23,24 +23,20 @@ struct AddEventView: View {
                 .textFieldStyle(.roundedBorder)
             TextField("Detail event", text: $detailEvent)
                 .textFieldStyle(.roundedBorder)
+            DatePicker("set event data", selection: $eventDate, displayedComponents: .date)
             Section("repeat the event in a ...") {
                 Picker("set event period", selection: $periodEvent) {
                     Text("day").tag(Period.day)
                     Text("week").tag(Period.weekOfMonth)
                     Text("month").tag(Period.month)
                     Text("year").tag(Period.year)
-                    Text("no").tag(Period.noPeriod)
+                    Text("never").tag(Period.noPeriod)
                 }
                 .pickerStyle(.segmented)
             }
             if periodEvent != .noPeriod {
                 Text("d")
             }
-            DatePicker("set event data", selection: $eventDate, displayedComponents: .date)
-//            DatePicker("created data", selection: $startDateEvent, displayedComponents: .date)
-            Text("\(startDateEvent.formatted(.dateTime.day().month().year()))")
-            Text("\(eventDate.formatted(.dateTime.day().month().year()))")
-            
         }
         .padding()
         .navigationTitle("Add Event")
@@ -67,28 +63,3 @@ struct AddEventView: View {
 #Preview {
     AddEventView()
 }
-
-
-/*
- 1 заводим событие без установки даты
-    показываю set data
-    селектор
- 2 заводим событие и ставим дату вперед
-    показываю дату когда событие произойдет + кол-во дней до события
-    селектор
- 3 заводим событие и ставим дату назад
-    показываю дату когда событие произойдет + кол-во дней с события
-    селектор
- 4 заводим событие и ставим период без установки даты
-    показываю дату когда событие произойдет + кол-во дней до события
-    показываю  дату когда событие произойдет + кол-во дней до события (в будущем добавить возможность раскрыть список дат)
-    селектор
- 5 заводим событие и ставим период с установкой даты вперед
-     показываю дату когда событие произойдет + кол-во дней до события
-     показываю  дату когда событие произойдет + кол-во дней до события (в будущем добавить возможность раскрыть список дат)
-     селектор
- 6 заводим событие и ставим период с установкой даты назад
-     показываю дату когда событие произойдет + кол-во дней до события
-     показываю  дату когда событие произойдет + кол-во дней до события (в будущем добавить возможность раскрыть список дат)
-     селектор
- */
