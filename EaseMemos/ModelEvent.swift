@@ -24,20 +24,24 @@ class ModelEvent {
     }
 }
 
-enum Period: Codable{
-    case noPeriod
+enum Period: Codable, CaseIterable, Identifiable{
+    var id: Self {
+        self
+    }
+    
     case day
     case weekOfMonth
     case month
     case year
+    case noPeriod
     
     var description: String {
         switch self {
-        case .noPeriod: "no period event"
-        case .day: "day"
-        case .weekOfMonth: "week"
-        case .month: "month"
-        case .year: "year"
+        case .day: "every day"
+        case .weekOfMonth: "every week"
+        case .month: "every month"
+        case .year: "every year"
+        case .noPeriod: "no repeat"
         }
     }
 }

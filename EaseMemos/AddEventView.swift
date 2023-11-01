@@ -24,16 +24,26 @@ struct AddEventView: View {
             TextField("Детали", text: $detailEvent)
                 .textFieldStyle(.roundedBorder)
             DatePicker("дата", selection: $eventDate, displayedComponents: .date)
-            Section("повторять каждые ...") {
-                Picker("set event period", selection: $periodEvent) {
-                    Text("day").tag(Period.day)
-                    Text("week").tag(Period.weekOfMonth)
-                    Text("month").tag(Period.month)
-                    Text("year").tag(Period.year)
-                    Text("never").tag(Period.noPeriod)
+            NavigationLink {
+                Form {
+                    Picker("Test", selection: $periodEvent) {
+                        ForEach(Period.allCases) { period in
+                            Text(period.description)
+                        }
+                    }
+                    .pickerStyle(.inline)
+                    .navigationTitle("repeat")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .labelsHidden()
                 }
-                .pickerStyle(.segmented)
+            } label: {
+                HStack {
+                    Text("repeat")
+                    Spacer()
+                    Text(periodEvent.description)
+                }
             }
+            
         }
         .padding()
         .navigationTitle("Add Event")
