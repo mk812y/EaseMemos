@@ -13,18 +13,18 @@ struct AddEventView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var nameEvent: String = ""
     @State private var detailEvent: String = ""
-    @State private var startDateEvent: Date = .now
+    @State private var createdDateEvent: Date = .now
     @State private var periodEvent: Period = .noPeriod
     @State private var eventDate: Date = .now
     
     var body: some View {
         VStack {
-            TextField("Name event", text: $nameEvent)
+            TextField("Название", text: $nameEvent)
                 .textFieldStyle(.roundedBorder)
-            TextField("Detail event", text: $detailEvent)
+            TextField("Детали", text: $detailEvent)
                 .textFieldStyle(.roundedBorder)
-            DatePicker("set event data", selection: $eventDate, displayedComponents: .date)
-            Section("repeat the event in a ...") {
+            DatePicker("дата", selection: $eventDate, displayedComponents: .date)
+            Section("повторять каждые ...") {
                 Picker("set event period", selection: $periodEvent) {
                     Text("day").tag(Period.day)
                     Text("week").tag(Period.weekOfMonth)
@@ -34,9 +34,6 @@ struct AddEventView: View {
                 }
                 .pickerStyle(.segmented)
             }
-            if periodEvent != .noPeriod {
-                Text("d")
-            }
         }
         .padding()
         .navigationTitle("Add Event")
@@ -45,7 +42,7 @@ struct AddEventView: View {
             Button(action: {
                 let event = ModelEvent(name: nameEvent,
                                        detail: detailEvent,
-                                       startDate: startDateEvent,
+                                       createdEventDate: createdDateEvent,
                                        eventDate: eventDate,
                                        period: periodEvent
                 )

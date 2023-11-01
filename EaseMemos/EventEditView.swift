@@ -34,7 +34,7 @@ struct EventEditView: View {
     let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
     let event = ModelEvent(name: "Example name 1", 
                   detail: "Example detail go here and will automatically expand vertically as they are edited.",
-                  startDate: .now)
+                  createdEventDate: .now)
     return EventEditView(event: event)
         .modelContainer(container)
 }

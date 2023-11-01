@@ -24,7 +24,8 @@ struct ListEventView: View {
                 }
                 .onDelete(perform: deleteTips)
             }
-            .navigationTitle("Tips")
+            .navigationTitle("Event")
+            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: ModelEvent.self, destination: EventEditView.init)
             .toolbar {
                 NavigationLink {
@@ -55,7 +56,7 @@ struct ListEventView: View {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
     for i in 1...3 {
-        let tip = ModelEvent(name: "Example ModelEvent \(i)", detail: "Pipa \(i)", startDate: Date.now)
+        let tip = ModelEvent(name: "Example ModelEvent \(i)", detail: "Pipa \(i)", createdEventDate: Date.now)
         container.mainContext.insert(tip)
     }
     return ListEventView()

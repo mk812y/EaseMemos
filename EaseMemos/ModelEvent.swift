@@ -15,31 +15,12 @@ class ModelEvent {
     var eventDate: Date
     var period: Period
     
-    init(name: String = "", detail: String = "", startDate: Date = .now, eventDate: Date = .now, period: Period = .noPeriod) {
+    init(name: String = "", detail: String = "", createdEventDate: Date = .now, eventDate: Date = .now, period: Period = .noPeriod) {
         self.name = name
         self.detail = detail
-        self.createdEventDate = startDate
+        self.createdEventDate = createdEventDate
         self.eventDate = eventDate
         self.period = period
-    }
-    
-    func setFinishDate(_ period: Period, _ createdEventDate: Date) -> String {
-        var modifiedDate = createdEventDate
-        var periodAsCalendarComponent: Calendar.Component = .nanosecond
-        switch period {
-        case .noPeriod:
-            break
-        case .day:
-            periodAsCalendarComponent = .day
-        case .weekOfMonth:
-            periodAsCalendarComponent = .weekOfMonth
-        case .month:
-            periodAsCalendarComponent = .month
-        case .year:
-            periodAsCalendarComponent = .year
-        }
-        modifiedDate = Calendar.current.date(byAdding: periodAsCalendarComponent, value: 1, to: createdEventDate) ?? .now
-        return modifiedDate.formatted(date: .abbreviated, time: .omitted)
     }
 }
 
@@ -59,4 +40,23 @@ enum Period: Codable{
         case .year: "year"
         }
     }
+}
+
+func setEventDate(_ period: Period, _ createdEventDate: Date, _ eventDate: Date) -> String {
+    var modifiedDate = createdEventDate
+    var periodAsCalendarComponent: Calendar.Component = .nanosecond
+    switch period {
+    case .noPeriod:
+        break
+    case .day:
+        periodAsCalendarComponent = .day
+    case .weekOfMonth:
+        periodAsCalendarComponent = .weekOfMonth
+    case .month:
+        periodAsCalendarComponent = .month
+    case .year:
+        periodAsCalendarComponent = .year
+    }
+    modifiedDate = Calendar.current.date(byAdding: periodAsCalendarComponent, value: 1, to: createdEventDate) ?? .now
+    return modifiedDate.formatted(date: .abbreviated, time: .omitted)
 }
