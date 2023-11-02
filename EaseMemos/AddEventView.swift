@@ -1,8 +1,8 @@
 //
-//  AddEventView.swift
+//  SwiftUIView.swift
 //  EaseMemos
 //
-//  Created by Михаил Куприянов on 31.10.23..
+//  Created by Михаил Куприянов on 2.11.23..
 //
 
 import SwiftUI
@@ -10,63 +10,51 @@ import SwiftData
 
 struct AddEventView: View {
     @Environment(\.modelContext) private var modelContext
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var presentationMode
+
     @State private var nameEvent: String = ""
     @State private var detailEvent: String = ""
     @State private var createdDateEvent: Date = .now
     @State private var periodEvent: Period = .noPeriod
     @State private var eventDate: Date = .now
-    
+
     var body: some View {
         VStack {
             TextField("Название", text: $nameEvent)
                 .textFieldStyle(.roundedBorder)
+                .padding()
             TextField("Детали", text: $detailEvent)
                 .textFieldStyle(.roundedBorder)
-            DatePicker("дата", selection: $eventDate, displayedComponents: .date)
-            NavigationLink {
-                Form {
-                    Picker("Test", selection: $periodEvent) {
-                        ForEach(Period.allCases) { period in
-                            Text(period.description)
-                        }
-                    }
-                    .pickerStyle(.inline)
-                    .navigationTitle("repeat")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .labelsHidden()
-                }
-            } label: {
-                HStack {
-                    Text("repeat")
-                    Spacer()
-                    Text(periodEvent.description)
+                .padding([.leading, .trailing], 20)
+
+            List {
+                DatePicker("Дата", selection: $eventDate, displayedComponents: .date)
+                NavigationLink(destination: PeriodPickerView(selectedPeriod: $periodEvent)) {
+                    Label("Повтор", systemImage: "arrow.right.circle.fill")
+                        .font(.headline)
                 }
             }
-            
         }
-        .padding()
-        .navigationTitle("Add Event")
+        .navigationTitle("Добавить событие")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar(content: {
-            Button(action: {
-                let event = ModelEvent(name: nameEvent,
-                                       detail: detailEvent,
-                                       createdEventDate: createdDateEvent,
-                                       eventDate: eventDate,
-                                       period: periodEvent
-                )
-                modelContext.insert(event)
-                presentationMode.wrappedValue.dismiss()
-            }, label: {
+        .toolbar {
+            Button(action: saveEvent) {
                 Image(systemName: "plus.circle")
-            })
+            }
             .disabled(nameEvent.count < 3)
-        })
-        Spacer()
+        }
+    }
+
+    private func saveEvent() {
+        let event = ModelEvent(name: nameEvent, detail: detailEvent, createdEventDate: createdDateEvent, eventDate: eventDate, period: periodEvent)
+        modelContext.insert(event)
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
-#Preview {
-    AddEventView()
+struct AddEventView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddEventView()
+    }
 }
+

@@ -10,7 +10,8 @@
 		A537D4CA2ACF395300C0F8E0 /* EventEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537D4C92ACF395300C0F8E0 /* EventEditView.swift */; };
 		A5400E3D2ADF15270011A7A4 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5400E3C2ADF15270011A7A4 /* EventView.swift */; };
 		A543A6FE2ACDE5770066560A /* ModelEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A543A6FD2ACDE5770066560A /* ModelEvent.swift */; };
-		A567D85F2AF0E40C0093FCB7 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A567D85E2AF0E40C0093FCB7 /* AddEventView.swift */; };
+		A548A9222AF43F890041E2E0 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A548A9212AF43F890041E2E0 /* AddEventView.swift */; };
+		A56FD9CA2AF445F900940FF7 /* PeriodPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56FD9C92AF445F900940FF7 /* PeriodPickerView.swift */; };
 		A5D626FE2A8BFBF800E7B295 /* EaseMemosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D626FD2A8BFBF800E7B295 /* EaseMemosApp.swift */; };
 		A5D627002A8BFBF800E7B295 /* ListEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D626FF2A8BFBF800E7B295 /* ListEventView.swift */; };
 		A5D627022A8BFBFA00E7B295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5D627012A8BFBFA00E7B295 /* Assets.xcassets */; };
@@ -21,7 +22,8 @@
 		A537D4C92ACF395300C0F8E0 /* EventEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditView.swift; sourceTree = "<group>"; };
 		A5400E3C2ADF15270011A7A4 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		A543A6FD2ACDE5770066560A /* ModelEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelEvent.swift; sourceTree = "<group>"; };
-		A567D85E2AF0E40C0093FCB7 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
+		A548A9212AF43F890041E2E0 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
+		A56FD9C92AF445F900940FF7 /* PeriodPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodPickerView.swift; sourceTree = "<group>"; };
 		A5D626FA2A8BFBF800E7B295 /* EaseMemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EaseMemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D626FD2A8BFBF800E7B295 /* EaseMemosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EaseMemosApp.swift; sourceTree = "<group>"; };
 		A5D626FF2A8BFBF800E7B295 /* ListEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventView.swift; sourceTree = "<group>"; };
@@ -62,9 +64,10 @@
 			children = (
 				A5D626FD2A8BFBF800E7B295 /* EaseMemosApp.swift */,
 				A5D626FF2A8BFBF800E7B295 /* ListEventView.swift */,
-				A567D85E2AF0E40C0093FCB7 /* AddEventView.swift */,
 				A5400E3C2ADF15270011A7A4 /* EventView.swift */,
 				A537D4C92ACF395300C0F8E0 /* EventEditView.swift */,
+				A548A9212AF43F890041E2E0 /* AddEventView.swift */,
+				A56FD9C92AF445F900940FF7 /* PeriodPickerView.swift */,
 				A543A6FD2ACDE5770066560A /* ModelEvent.swift */,
 				A5D627012A8BFBFA00E7B295 /* Assets.xcassets */,
 				A5D627032A8BFBFA00E7B295 /* EaseMemos.entitlements */,
@@ -151,7 +154,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A567D85F2AF0E40C0093FCB7 /* AddEventView.swift in Sources */,
+				A548A9222AF43F890041E2E0 /* AddEventView.swift in Sources */,
+				A56FD9CA2AF445F900940FF7 /* PeriodPickerView.swift in Sources */,
 				A537D4CA2ACF395300C0F8E0 /* EventEditView.swift in Sources */,
 				A543A6FE2ACDE5770066560A /* ModelEvent.swift in Sources */,
 				A5D627002A8BFBF800E7B295 /* ListEventView.swift in Sources */,
