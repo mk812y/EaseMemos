@@ -44,28 +44,30 @@ enum Period: Codable, CaseIterable, Identifiable{
         case .noPeriod: "no repeat"
         }
     }
+    
+    
 }
 
-func setEventDate(_ period: Period, _ createdEventDate: Date, _ eventDate: Date) -> String {
-    var modifiedDate = createdEventDate
-    var periodAsCalendarComponent: Calendar.Component = .nanosecond
+func calculateNewDate(_ period: Period, _ createdEventDate: Date, _ eventDate: Date) -> Date {
+    let calendar = Calendar.current
+    var newDate = eventDate
+    
     switch period {
-    case .noPeriod:
-        break
     case .day:
-        periodAsCalendarComponent = .day
+        newDate = calendar.date(byAdding: .day, value: 1, to: eventDate) ?? eventDate
     case .weekOfMonth:
-        periodAsCalendarComponent = .weekOfMonth
+        newDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: eventDate) ?? eventDate
     case .month:
-        periodAsCalendarComponent = .month
+        newDate = calendar.date(byAdding: .month, value: 1, to: eventDate) ?? eventDate
     case .year:
-        periodAsCalendarComponent = .year
+        newDate = calendar.date(byAdding: .year, value: 1, to: eventDate) ?? eventDate
+    case .noPeriod:
+        // Не меняем дату для noPeriod
+        break
     }
-    print("\(createdEventDate) created - \(period)")
-    print("\(eventDate) eventDate - \(period)")
-    modifiedDate = Calendar.current.date(byAdding: periodAsCalendarComponent, value: 1, to: createdEventDate) ?? .now
-    return modifiedDate.formatted(date: .abbreviated, time: .omitted)
-} //работает при нажатии, eventDate дату ставит независимо от периода, то есть ставит дату из пиккера игнорируя период, видимо из-за расположения пиккера и даты
+    
+    return newDate
+}
 
 
 //enum Periodicity: String {

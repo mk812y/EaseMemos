@@ -65,7 +65,6 @@ struct ListEventView: View {
 
 /// Задание
 /*
- 0 убрать в отдельный View Picker period
  0 после селектора переделать setEventDate
  1 дизайн
  2 добавить 30 дней

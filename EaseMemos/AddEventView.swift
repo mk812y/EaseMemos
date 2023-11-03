@@ -20,22 +20,26 @@ struct AddEventView: View {
 
     var body: some View {
         VStack {
-            TextField("Название", text: $nameEvent)
+            
+            TextField("name event", text: $nameEvent)
                 .textFieldStyle(.roundedBorder)
                 .padding()
-            TextField("Детали", text: $detailEvent)
+            TextField("description", text: $detailEvent)
                 .textFieldStyle(.roundedBorder)
-                .padding([.leading, .trailing], 20)
+                .padding([.leading, .trailing], 15)
 
             List {
-                DatePicker("Дата", selection: $eventDate, displayedComponents: .date)
+                DatePicker("date", selection: $eventDate, displayedComponents: .date)
                 NavigationLink(destination: PeriodPickerView(selectedPeriod: $periodEvent)) {
-                    Label("Повтор", systemImage: "arrow.right.circle.fill")
-                        .font(.headline)
+                    HStack {
+                        Text("repeat")
+                        Spacer()
+                        Text("\(periodEvent.description)")
+                    }
                 }
             }
         }
-        .navigationTitle("Добавить событие")
+        .navigationTitle("new event")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button(action: saveEvent) {
@@ -46,15 +50,19 @@ struct AddEventView: View {
     }
 
     private func saveEvent() {
-        let event = ModelEvent(name: nameEvent, detail: detailEvent, createdEventDate: createdDateEvent, eventDate: eventDate, period: periodEvent)
+        let event = ModelEvent(name: nameEvent, 
+                               detail: detailEvent,
+                               createdEventDate: createdDateEvent,
+                               eventDate: calculateNewDate(periodEvent, createdDateEvent, eventDate),
+                               period: periodEvent)
         modelContext.insert(event)
         presentationMode.wrappedValue.dismiss()
     }
 }
 
-struct AddEventView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddEventView()
-    }
-}
+//struct AddEventView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddEventView()
+//    }
+//}
 
