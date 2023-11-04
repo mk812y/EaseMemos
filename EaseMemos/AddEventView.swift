@@ -22,23 +22,19 @@ struct AddEventView: View {
 
     var body: some View {
         VStack {
-            
             TextField("name event", text: $nameEvent)
                 .textFieldStyle(.roundedBorder)
-                .padding()
             TextField("description", text: $detailEvent)
                 .textFieldStyle(.roundedBorder)
-                .padding([.leading, .trailing], 15)
-
-            List {
-                DatePicker("date", selection: $startEventDate, displayedComponents: .date)
-                NavigationLink(destination: PeriodPickerView(selectedPeriod: $periodEvent)) {
-                    HStack {
-                        Text("repeat")
-                        Spacer()
-                        Text("\(periodEvent.description)")
-                    }
+            DatePicker("start date", selection: $startEventDate)
+            Section("repeat period") {
+                Picker("Period", selection: $periodEvent) {
+                    Text("day").tag(Period.day)
+                    Text("week").tag(Period.weekOfMonth)
+                    Text("month").tag(Period.month)
+                    Text("year").tag(Period.year)
                 }
+                .pickerStyle(.segmented)
             }
         }
         .navigationTitle("new event")
@@ -49,6 +45,8 @@ struct AddEventView: View {
             }
             .disabled(nameEvent.count < 3)
         }
+        .padding()
+        Spacer()
     }
 
     private func saveEvent() {

@@ -11,11 +11,11 @@ import SwiftData
 struct EventView: View {
     var event: ModelEvent
     
-//    init(repeatingDates: [Date], event: ModelEvent) {
-//        self.repeatingDates = setupListNextDate(event.period, event.startEventDate, numberOfDates)
-//        self.event = event
-//    }
-
+    //    init(repeatingDates: [Date], event: ModelEvent) {
+    //        self.repeatingDates = setupListNextDate(event.period, event.startEventDate, numberOfDates)
+    //        self.event = event
+    //    }
+    
     var body: some View {
         VStack (alignment: .leading) {
             Text(event.name)
@@ -24,24 +24,11 @@ struct EventView: View {
                 Text(event.detail)
                     .font(.caption)
             }
-            if !((event.startEventDate.formatted(.dateTime.day().month().year())) == (event.createdEventDate.formatted(.dateTime.day().month().year()))) || event.period != .noPeriod {
-                HStack {
-                    Text("data")
-                    Text(event.startEventDate.formatted(date: .abbreviated, time: .omitted))
-                }
-            }
-            if event.period != .noPeriod {
-                
-                Text("createdEventDate \(event.createdEventDate)")
-                Text("startEventDate \(event.startEventDate)")
-                Text("repeat \(event.period.description)")
-                if !event.listEventDate.isEmpty {
-                    Text("даты события")
-                    ForEach(event.listEventDate, id: \.self, content: { eventDate in
-                        Text("\(eventDate)")
-                    })
-                }
-                
+            if !event.listEventDate.isEmpty {
+                Text("\(event.startEventDate.formatted(date: .abbreviated, time: .omitted))")
+                ForEach(event.listEventDate, id: \.self, content: { eventDate in
+                    Text("\(eventDate.formatted(date: .abbreviated, time: .omitted))")
+                })
             }
         }
     }
