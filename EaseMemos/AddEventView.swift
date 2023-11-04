@@ -53,7 +53,7 @@ struct AddEventView: View {
         let event = ModelEvent(name: nameEvent, 
                                detail: detailEvent,
                                createdEventDate: createdDateEvent,
-                               eventDate: calculateNewDate(periodEvent, createdDateEvent, eventDate),
+                               eventDate: calculateNextDate(periodEvent, eventDate),
                                period: periodEvent)
         modelContext.insert(event)
         presentationMode.wrappedValue.dismiss()

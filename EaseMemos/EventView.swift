@@ -28,8 +28,8 @@ struct EventView: View {
             if event.period != .noPeriod {
                 Text("repeat \(event.period.description)")
 //                Text("setEventDate \(setEventDate(event.period, event.createdEventDate, event.eventDate))")
-//                Text("calculateNewDate \(event.calculateNewDate(event.period, event.createdEventDate, event.eventDate))")
-                Text("calculateNewDate \(event.eventDate))")
+//                Text("calculateNextDate \(event.calculateNextDate(event.period, event.createdEventDate, event.eventDate))")
+                Text("calculateNextDate \(event.eventDate))")
                 Text("createdEventDate \(event.createdEventDate)")
                 Text("eventDate \(event.eventDate)")
             }

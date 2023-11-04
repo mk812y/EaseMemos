@@ -48,25 +48,25 @@ enum Period: Codable, CaseIterable, Identifiable{
     
 }
 
-func calculateNewDate(_ period: Period, _ createdEventDate: Date, _ eventDate: Date) -> Date {
+func calculateNextDate(_ period: Period, _ eventDate: Date) -> Date {
     let calendar = Calendar.current
-    var newDate = eventDate
+    var nextDate = eventDate
     
     switch period {
     case .day:
-        newDate = calendar.date(byAdding: .day, value: 1, to: eventDate) ?? eventDate
+        nextDate = calendar.date(byAdding: .day, value: 1, to: eventDate) ?? eventDate
     case .weekOfMonth:
-        newDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: eventDate) ?? eventDate
+        nextDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: eventDate) ?? eventDate
     case .month:
-        newDate = calendar.date(byAdding: .month, value: 1, to: eventDate) ?? eventDate
+        nextDate = calendar.date(byAdding: .month, value: 1, to: eventDate) ?? eventDate
     case .year:
-        newDate = calendar.date(byAdding: .year, value: 1, to: eventDate) ?? eventDate
+        nextDate = calendar.date(byAdding: .year, value: 1, to: eventDate) ?? eventDate
     case .noPeriod:
         // Не меняем дату для noPeriod
         break
     }
     
-    return newDate
+    return nextDate
 }
 
 
