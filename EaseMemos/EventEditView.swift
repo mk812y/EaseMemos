@@ -12,11 +12,13 @@ struct EventEditView: View {
     @Bindable var event: ModelEvent
     
     var body: some View {
-        Form {
-            TextField("Name", text: $event.name)
-            TextField("Detail", text: $event.detail)
-            DatePicker("Start date", selection: $event.createdEventDate)
-            Section("Period") {
+        VStack {
+            TextField("name event", text: $event.name)
+                .textFieldStyle(.roundedBorder)
+            TextField("description", text: $event.detail)
+                .textFieldStyle(.roundedBorder)
+            DatePicker("start date", selection: $event.startEventDate)
+            Section("repeat period") {
                 Picker("Period", selection: $event.period) {
                     Text("day").tag(Period.day)
                     Text("week").tag(Period.weekOfMonth)
@@ -26,6 +28,10 @@ struct EventEditView: View {
                 .pickerStyle(.segmented)
             }
         }
+        .navigationTitle("new event")
+        .navigationBarTitleDisplayMode(.inline)
+        .padding()
+        Spacer()
     }
 }
 

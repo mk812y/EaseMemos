@@ -58,21 +58,18 @@ func setupListNextDate(_ period: Period, _ startEventDate: Date, _ numberOfDates
         switch period {
         case .day:
             newDate = calendar.date(byAdding: .day, value: 1, to: tempDate) ?? tempDate
-            tempDate = newDate
         case .weekOfMonth:
             newDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: tempDate) ?? tempDate
-            tempDate = newDate
         case .month:
             newDate = calendar.date(byAdding: .month, value: 1, to: tempDate) ?? tempDate
-            tempDate = newDate
         case .year:
             newDate = calendar.date(byAdding: .year, value: 1, to: tempDate) ?? tempDate
-            tempDate = newDate
         case .noPeriod:
             // Не меняем дату для noPeriod
             break
         }
         listNextDate.append(newDate)
+        tempDate = newDate
     }
     
     return listNextDate

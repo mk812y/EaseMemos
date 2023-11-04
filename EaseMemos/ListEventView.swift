@@ -65,7 +65,7 @@ struct ListEventView: View {
 
 /// Задание
 /*
- 0 после селектора переделать setEventDate
+ 0 EventEditView добавить вызов func setupListNextDate при уходе с экрана
  1 дизайн
  2 добавить 30 дней
  5 добавить сортировку по дате
