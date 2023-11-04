@@ -15,8 +15,10 @@ struct AddEventView: View {
     @State private var nameEvent: String = ""
     @State private var detailEvent: String = ""
     @State private var createdDateEvent: Date = .now
+    @State private var startEventDate: Date = .now
     @State private var periodEvent: Period = .noPeriod
-    @State private var eventDate: Date = .now
+    @State private var listEventDate: [Date] = []
+    
 
     var body: some View {
         VStack {
@@ -29,7 +31,7 @@ struct AddEventView: View {
                 .padding([.leading, .trailing], 15)
 
             List {
-                DatePicker("date", selection: $eventDate, displayedComponents: .date)
+                DatePicker("date", selection: $startEventDate, displayedComponents: .date)
                 NavigationLink(destination: PeriodPickerView(selectedPeriod: $periodEvent)) {
                     HStack {
                         Text("repeat")
@@ -50,11 +52,16 @@ struct AddEventView: View {
     }
 
     private func saveEvent() {
-        let event = ModelEvent(name: nameEvent, 
+        if periodEvent != .noPeriod {
+            let numberOfDates = 3
+            listEventDate = setupListNextDate(periodEvent, startEventDate, numberOfDates)
+        }
+        let event = ModelEvent(name: nameEvent,
                                detail: detailEvent,
                                createdEventDate: createdDateEvent,
-                               eventDate: calculateNextDate(periodEvent, eventDate),
-                               period: periodEvent)
+                               startEventDate: startEventDate,
+                               period: periodEvent,
+                               listEventDate: listEventDate)
         modelContext.insert(event)
         presentationMode.wrappedValue.dismiss()
     }

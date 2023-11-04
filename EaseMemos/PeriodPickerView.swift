@@ -12,14 +12,14 @@ struct PeriodPickerView: View {
 
     var body: some View {
         Form {
-            Picker("Повтор", selection: $selectedPeriod) {
+            Picker("repeat", selection: $selectedPeriod) {
                 ForEach(Period.allCases) { period in
                     Text(period.description)
                 }
             }
             .pickerStyle(.inline)
         }
-        .navigationTitle("Настройка повтора")
+        .navigationTitle("setup repeat")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

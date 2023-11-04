@@ -11,16 +11,19 @@ import SwiftData
 class ModelEvent {
     var name: String
     var detail: String
-    var createdEventDate: Date
-    var eventDate: Date
-    var period: Period
+    var createdEventDate: Date  //записывается в момент создания
+    var startEventDate: Date    //устанавливается через DatePicker
+    var period: Period          //на основе period считается listEventDate для последующих EventDate через period от startEventDate
+    var listEventDate: [Date]
     
-    init(name: String = "", detail: String = "", createdEventDate: Date = .now, eventDate: Date = .now, period: Period = .noPeriod) {
+    
+    init(name: String = "", detail: String = "", createdEventDate: Date = .now, startEventDate: Date = .now, period: Period = .noPeriod, listEventDate: [Date] = []) {
         self.name = name
         self.detail = detail
         self.createdEventDate = createdEventDate
-        self.eventDate = eventDate
+        self.startEventDate = startEventDate
         self.period = period
+        self.listEventDate = listEventDate
     }
 }
 
@@ -44,29 +47,31 @@ enum Period: Codable, CaseIterable, Identifiable{
         case .noPeriod: "no repeat"
         }
     }
-    
-    
 }
-
-func calculateNextDate(_ period: Period, _ eventDate: Date) -> Date {
+//расчитаем список следующих eventDate через Period от startEventDate
+func setupListNextDate(_ period: Period, _ startEventDate: Date, _ numberOfDates: Int) -> [Date] {
     let calendar = Calendar.current
-    var nextDate = eventDate
+    var listNextDate: [Date] = []
     
-    switch period {
-    case .day:
-        nextDate = calendar.date(byAdding: .day, value: 1, to: eventDate) ?? eventDate
-    case .weekOfMonth:
-        nextDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: eventDate) ?? eventDate
-    case .month:
-        nextDate = calendar.date(byAdding: .month, value: 1, to: eventDate) ?? eventDate
-    case .year:
-        nextDate = calendar.date(byAdding: .year, value: 1, to: eventDate) ?? eventDate
-    case .noPeriod:
-        // Не меняем дату для noPeriod
-        break
+    for _ in 0..<numberOfDates {
+        var newDate = startEventDate
+        switch period {
+        case .day:
+            newDate = calendar.date(byAdding: .day, value: 1, to: startEventDate) ?? startEventDate
+        case .weekOfMonth:
+            newDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: startEventDate) ?? startEventDate
+        case .month:
+            newDate = calendar.date(byAdding: .month, value: 1, to: startEventDate) ?? startEventDate
+        case .year:
+            newDate = calendar.date(byAdding: .year, value: 1, to: startEventDate) ?? startEventDate
+        case .noPeriod:
+            // Не меняем дату для noPeriod
+            break
+        }
+        listNextDate.append(newDate)
     }
     
-    return nextDate
+    return listNextDate
 }
 
 

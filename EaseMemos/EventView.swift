@@ -10,6 +10,11 @@ import SwiftData
 
 struct EventView: View {
     var event: ModelEvent
+    
+//    init(repeatingDates: [Date], event: ModelEvent) {
+//        self.repeatingDates = setupListNextDate(event.period, event.startEventDate, numberOfDates)
+//        self.event = event
+//    }
 
     var body: some View {
         VStack (alignment: .leading) {
@@ -19,31 +24,28 @@ struct EventView: View {
                 Text(event.detail)
                     .font(.caption)
             }
-            if !((event.eventDate.formatted(.dateTime.day().month().year())) == (event.createdEventDate.formatted(.dateTime.day().month().year()))) || event.period != .noPeriod {
+            if !((event.startEventDate.formatted(.dateTime.day().month().year())) == (event.createdEventDate.formatted(.dateTime.day().month().year()))) || event.period != .noPeriod {
                 HStack {
                     Text("data")
-                    Text(event.eventDate.formatted(date: .abbreviated, time: .omitted))
+                    Text(event.startEventDate.formatted(date: .abbreviated, time: .omitted))
                 }
             }
             if event.period != .noPeriod {
                 Text("repeat \(event.period.description)")
-//                Text("setEventDate \(setEventDate(event.period, event.createdEventDate, event.eventDate))")
-//                Text("calculateNextDate \(event.calculateNextDate(event.period, event.createdEventDate, event.eventDate))")
-                Text("calculateNextDate \(event.eventDate))")
                 Text("createdEventDate \(event.createdEventDate)")
-                Text("eventDate \(event.eventDate)")
+                Text("startEventDate \(event.startEventDate)")
             }
         }
     }
 }
 
-#Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
-    let event = ModelEvent(name: "Example name",
-                  detail: "detail detail detail detail detail",
-                  createdEventDate: Date.now)
-        container.mainContext.insert(event)
-    return EventView(event: event)
-        .modelContainer(container)
-}
+//#Preview {
+//    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+//    let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
+//    let event = ModelEvent(name: "Example name",
+//                  detail: "detail detail detail detail detail",
+//                  createdEventDate: Date.now)
+//        container.mainContext.insert(event)
+//    return EventView(repeatingDates: <#[Date]#>, event: event)
+//        .modelContainer(container)
+//}
