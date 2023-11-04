@@ -53,7 +53,7 @@ struct AddEventView: View {
 
     private func saveEvent() {
         if periodEvent != .noPeriod {
-            let numberOfDates = 3
+            let numberOfDates = 2
             listEventDate = setupListNextDate(periodEvent, startEventDate, numberOfDates)
         }
         let event = ModelEvent(name: nameEvent,

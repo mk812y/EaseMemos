@@ -52,18 +52,22 @@ enum Period: Codable, CaseIterable, Identifiable{
 func setupListNextDate(_ period: Period, _ startEventDate: Date, _ numberOfDates: Int) -> [Date] {
     let calendar = Calendar.current
     var listNextDate: [Date] = []
-    
+    var tempDate = startEventDate
     for _ in 0..<numberOfDates {
-        var newDate = startEventDate
+        var newDate = tempDate
         switch period {
         case .day:
-            newDate = calendar.date(byAdding: .day, value: 1, to: startEventDate) ?? startEventDate
+            newDate = calendar.date(byAdding: .day, value: 1, to: tempDate) ?? tempDate
+            tempDate = newDate
         case .weekOfMonth:
-            newDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: startEventDate) ?? startEventDate
+            newDate = calendar.date(byAdding: .weekOfMonth, value: 1, to: tempDate) ?? tempDate
+            tempDate = newDate
         case .month:
-            newDate = calendar.date(byAdding: .month, value: 1, to: startEventDate) ?? startEventDate
+            newDate = calendar.date(byAdding: .month, value: 1, to: tempDate) ?? tempDate
+            tempDate = newDate
         case .year:
-            newDate = calendar.date(byAdding: .year, value: 1, to: startEventDate) ?? startEventDate
+            newDate = calendar.date(byAdding: .year, value: 1, to: tempDate) ?? tempDate
+            tempDate = newDate
         case .noPeriod:
             // Не меняем дату для noPeriod
             break

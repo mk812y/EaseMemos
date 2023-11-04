@@ -31,9 +31,17 @@ struct EventView: View {
                 }
             }
             if event.period != .noPeriod {
-                Text("repeat \(event.period.description)")
+                
                 Text("createdEventDate \(event.createdEventDate)")
                 Text("startEventDate \(event.startEventDate)")
+                Text("repeat \(event.period.description)")
+                if !event.listEventDate.isEmpty {
+                    Text("даты события")
+                    ForEach(event.listEventDate, id: \.self, content: { eventDate in
+                        Text("\(eventDate)")
+                    })
+                }
+                
             }
         }
     }
