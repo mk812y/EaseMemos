@@ -27,7 +27,7 @@ class ModelEvent {
     }
 }
 
-enum Period: Codable, CaseIterable, Identifiable{
+enum Period: Codable, CaseIterable, Identifiable, Equatable{
     var id: Self {
         self
     }

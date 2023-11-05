@@ -52,16 +52,16 @@ struct ListEventView: View {
     }
 }
 
-#Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
-    for i in 1...3 {
-        let tip = ModelEvent(name: "Example ModelEvent \(i)", detail: "Pipa \(i)", createdEventDate: Date.now)
-        container.mainContext.insert(tip)
-    }
-    return ListEventView()
-        .modelContainer(container)
-}
+//#Preview {
+//    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+//    let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
+//    for i in 1...3 {
+//        let tip = ModelEvent(name: "Example ModelEvent \(i)", detail: "Pipa \(i)", createdEventDate: Date.now)
+//        container.mainContext.insert(tip)
+//    }
+//    return ListEventView()
+//        .modelContainer(container)
+//}
 
 /// Задание
 /*

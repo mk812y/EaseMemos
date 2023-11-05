@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct EventEditView: View {
+    private let numberOfDates = 3
     @Bindable var event: ModelEvent
     
     var body: some View {
@@ -18,6 +19,9 @@ struct EventEditView: View {
             TextField("description", text: $event.detail)
                 .textFieldStyle(.roundedBorder)
             DatePicker("start date", selection: $event.startEventDate)
+                .onChange(of: event.startEventDate) {
+                    event.listEventDate = setupListNextDate(event.period, event.startEventDate, numberOfDates)
+                }
             Section("repeat period") {
                 Picker("Period", selection: $event.period) {
                     Text("day").tag(Period.day)
@@ -26,6 +30,9 @@ struct EventEditView: View {
                     Text("year").tag(Period.year)
                 }
                 .pickerStyle(.segmented)
+                .onChange(of: event.period) {
+                    event.listEventDate = setupListNextDate(event.period, event.startEventDate, numberOfDates)
+                }
             }
         }
         .navigationTitle("new event")
@@ -35,12 +42,12 @@ struct EventEditView: View {
     }
 }
 
-#Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
-    let event = ModelEvent(name: "Example name 1", 
-                  detail: "Example detail go here and will automatically expand vertically as they are edited.",
-                  createdEventDate: .now)
-    return EventEditView(event: event)
-        .modelContainer(container)
-}
+//#Preview {
+//    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+//    let container = try! ModelContainer(for: ModelEvent.self, configurations: config)
+//    let event = ModelEvent(name: "Example name 1", 
+//                  detail: "Example detail go here and will automatically expand vertically as they are edited.",
+//                  createdEventDate: .now)
+//    return EventEditView(event: event)
+//        .modelContainer(container)
+//}
