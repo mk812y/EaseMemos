@@ -22,7 +22,7 @@ struct AddEventView: View {
 
     var body: some View {
         VStack {
-            TextField("name event", text: $nameEvent)
+            TextField("name", text: $nameEvent)
                 .textFieldStyle(.roundedBorder)
             TextField("description", text: $detailEvent)
                 .textFieldStyle(.roundedBorder)
@@ -44,13 +44,16 @@ struct AddEventView: View {
             Button(action: saveEvent) {
                 Image(systemName: "plus.circle")
             }
-            .disabled(nameEvent.count < 3)
+//            .disabled(nameEvent.count < 3)
         }
         .padding()
         Spacer()
     }
 
     private func saveEvent() {
+        if nameEvent == "" {
+            nameEvent = "Event"
+        }
         if periodEvent != .noPeriod {
             let numberOfDates = 2
             listEventDate = setupListNextDate(periodEvent, startEventDate, numberOfDates)

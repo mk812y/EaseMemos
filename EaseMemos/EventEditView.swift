@@ -18,6 +18,7 @@ struct EventEditView: View {
                 .textFieldStyle(.roundedBorder)
             TextField("description", text: $event.detail)
                 .textFieldStyle(.roundedBorder)
+            
             DatePicker("start date", selection: $event.startEventDate)
                 .onChange(of: event.startEventDate) {
                     event.listEventDate = setupListNextDate(event.period, event.startEventDate, numberOfDates)
@@ -36,7 +37,7 @@ struct EventEditView: View {
                 }
             }
         }
-        .navigationTitle("new event")
+        .navigationTitle("\(event.name)")
         .navigationBarTitleDisplayMode(.inline)
         .padding()
         Spacer()

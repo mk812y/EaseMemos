@@ -24,10 +24,13 @@ struct EventView: View {
                 Text(event.detail)
                     .font(.caption)
             }
+            Text("created - \(event.createdEventDate.formatted(date: .abbreviated, time: .omitted))")
+            if (event.createdEventDate.formatted(date: .abbreviated, time: .omitted) != event.startEventDate.formatted(date: .abbreviated, time: .omitted)) {
+                Text("\(event.startEventDate.formatted(date: .abbreviated, time: .omitted)) s")
+            }
             if !event.listEventDate.isEmpty {
-//                Text(" \(event.startEventDate.formatted(date: .abbreviated, time: .omitted))")
                 ForEach(event.listEventDate, id: \.self, content: { eventDate in
-                    Text("\(eventDate.formatted(date: .abbreviated, time: .omitted))")
+                    Text("\(eventDate.formatted(date: .abbreviated, time: .omitted)) l")
                 })
             }
         }
