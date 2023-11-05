@@ -25,7 +25,7 @@ struct EventView: View {
                     .font(.caption)
             }
             if !event.listEventDate.isEmpty {
-                Text(" \(event.startEventDate.formatted(date: .abbreviated, time: .omitted))")
+//                Text(" \(event.startEventDate.formatted(date: .abbreviated, time: .omitted))")
                 ForEach(event.listEventDate, id: \.self, content: { eventDate in
                     Text("\(eventDate.formatted(date: .abbreviated, time: .omitted))")
                 })

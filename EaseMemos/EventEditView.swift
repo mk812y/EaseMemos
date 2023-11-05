@@ -28,6 +28,7 @@ struct EventEditView: View {
                     Text("week").tag(Period.weekOfMonth)
                     Text("month").tag(Period.month)
                     Text("year").tag(Period.year)
+                    Text("no").tag(Period.noPeriod)
                 }
                 .pickerStyle(.segmented)
                 .onChange(of: event.period) {

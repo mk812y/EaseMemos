@@ -65,7 +65,7 @@ func setupListNextDate(_ period: Period, _ startEventDate: Date, _ numberOfDates
         case .year:
             newDate = calendar.date(byAdding: .year, value: 1, to: tempDate) ?? tempDate
         case .noPeriod:
-            // Не меняем дату для noPeriod
+            listNextDate = []
             break
         }
         listNextDate.append(newDate)
